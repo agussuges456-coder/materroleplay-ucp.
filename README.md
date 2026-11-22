@@ -32,12 +32,12 @@ Di `gamemodes/materroleplay.pwn`, ubah:
 
 ```pawn
 #define UCP_API_URL "https://DOMAIN-VERCEL-KAMU.vercel.app/api/game-login"
-#define UCP_SERVER_SECRET "buat-secret-panjang-yang-sama-dengan-vercel"
+#define UCP_SERVER_SECRET "secret-yang-sama-dengan-Vercel"
 ```
 
-Catatan penting: source gamemode awal menggunakan native `HTTP` bawaan SA-MP. Native tersebut hanya cocok untuk bridge HTTP biasa, sehingga tidak dapat langsung memanggil URL HTTPS Vercel. Untuk koneksi langsung ke Vercel, pasang plugin HTTPS seperti [`https_samp`](https://github.com/NullSablex/https_samp), salin include-nya ke `pawno/include`, lalu migrasikan pemanggilan `HTTP` ke native `https`. Alternatifnya, jalankan bridge HTTP di server game yang meneruskan request ke Vercel.
+Gamemode sudah menggunakan plugin [`https_samp`](https://github.com/NullSablex/https_samp) untuk koneksi HTTPS langsung ke Vercel. DLL berada di `plugins/https_samp.dll`, include berada di `pawno/include/https_samp.inc`, dan `server.cfg` sudah memuat plugin tersebut.
 
-Endpoint akan menerima request POST dan mengembalikan `OK|id|username` saat login berhasil. Keduanya tidak membutuhkan plugin atau koneksi MySQL untuk database; plugin HTTPS hanya diperlukan bila gamemode mengakses endpoint Vercel secara langsung.
+Ganti `UCP_SERVER_SECRET` di gamemode dengan nilai yang sama di environment variable Vercel. Jangan commit secret asli ke repository publik. Endpoint menerima request POST dan mengembalikan `OK|id|username` saat login berhasil. Database tetap tidak menggunakan MySQL.
 
 ## 4. Alur pengguna
 
