@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MaterRoleplay User Control Panel">
+  <title>MaterRoleplay UCP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./config.js"></script>
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="./">
+        <span class="brand-mark">MR</span>
+        <span>
+          <strong>MaterRoleplay</strong>
+          <small>USER CONTROL PANEL</small>
+        </span>
+      </a>
+      <span class="server-pill"><i></i> SA-MP SERVER</span>
+    </header>
+
+    <div id="config-warning" class="notice notice-warning hidden" role="alert">
+      UCP belum dikonfigurasi. Isi URL project dan anon key Supabase di file <code>config.js</code>.
+    </div>
+
+    <section id="auth-view" class="auth-layout">
+      <div class="hero-copy">
+        <p class="eyebrow">WELCOME TO THE CITY</p>
+        <h1>Bangun cerita<br><span>versimu sendiri.</span></h1>
+        <p class="hero-text">Buat akun UCP untuk mengakses dunia MaterRoleplay. Satu akun untuk perjalanan, karakter, dan komunitasmu.</p>
+        <div class="hero-stats">
+          <div><strong>01</strong><span>Daftar akun</span></div>
+          <div><strong>02</strong><span>Masuk ke server</span></div>
+          <div><strong>03</strong><span>Mulai bermain</span></div>
+        </div>
+      </div>
+
+      <div class="auth-card card">
+        <div class="tabs" role="tablist" aria-label="Autentikasi">
+          <button class="tab active" type="button" data-panel="register" role="tab" aria-selected="true">Buat UCP</button>
+          <button class="tab" type="button" data-panel="login" role="tab" aria-selected="false">Login</button>
+        </div>
+
+        <form id="register-form" class="auth-form panel active" novalidate>
+          <div class="form-heading">
+            <h2>Daftar akun baru</h2>
+            <p>Gunakan username yang sama dengan nama akun di dalam game.</p>
+          </div>
+          <label>
+            Username
+            <input id="register-username" name="username" type="text" minlength="3" maxlength="24" pattern="[A-Za-z0-9_]+" autocomplete="nickname" placeholder="contoh_player" required>
+            <small>3–24 karakter: huruf, angka, dan underscore.</small>
+          </label>
+          <label>
+            Email
+            <input id="register-email" name="email" type="email" autocomplete="email" placeholder="kamu@email.com" required>
+          </label>
+          <label>
+            Password
+            <input id="register-password" name="password" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="Minimal 8 karakter" required>
+          </label>
+          <label>
+            Ulangi password
+            <input id="register-confirm" name="confirm" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="Ketik ulang password" required>
+          </label>
+          <button class="primary-button" type="submit">Buat akun <span>→</span></button>
+          <p id="register-message" class="form-message" aria-live="polite"></p>
+        </form>
+
+        <form id="login-form" class="auth-form panel" novalidate>
+          <div class="form-heading">
+            <h2>Selamat datang kembali</h2>
+            <p>Masuk untuk melihat data akun dan karakter kamu.</p>
+          </div>
+          <label>
+            Email
+            <input id="login-email" name="email" type="email" autocomplete="email" placeholder="kamu@email.com" required>
+          </label>
+          <label>
+            Password
+            <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Password UCP" required>
+          </label>
+          <button class="primary-button" type="submit">Login <span>→</span></button>
+          <p id="login-message" class="form-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="dashboard-view" class="dashboard card hidden">
+      <div class="dashboard-head">
+        <div>
+          <p class="eyebrow">ACCOUNT CENTER</p>
+          <h2>Dashboard UCP</h2>
+          <p class="muted">Kelola identitas akun MaterRoleplay kamu.</p>
+        </div>
+        <button id="logout-button" class="ghost-button" type="button">Logout</button>
+      </div>
+      <div class="account-grid">
+        <div class="account-card">
+          <span class="label">USERNAME</span>
+          <strong id="account-username">-</strong>
+        </div>
+        <div class="account-card">
+          <span class="label">EMAIL</span>
+          <strong id="account-email">-</strong>
+        </div>
+        <div class="account-card">
+          <span class="label">STATUS</span>
+          <strong id="account-status" class="status-active">Active</strong>
+        </div>
+        <div class="account-card">
+          <span class="label">TERDAFTAR</span>
+          <strong id="account-created">-</strong>
+        </div>
+      </div>
+      <div class="dashboard-placeholder">
+        <span class="placeholder-icon">✦</span>
+        <div>
+          <strong>Fitur karakter segera hadir</strong>
+          <p>Fondasi UCP sudah siap. Sistem karakter, top-up, dan admin dapat ditambahkan di tahap berikutnya.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>© 2026 MaterRoleplay</span>
+      <span>Play fair. Create stories.</span>
+    </footer>
+  </main>
+</body>
+</html>
